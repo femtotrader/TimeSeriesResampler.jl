@@ -1,3 +1,5 @@
+using Base.Test
+
 using TimeSeries: TimeArray
 using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum
 using TimeFrames: Minutely
@@ -31,21 +33,25 @@ for tf in a_tf
     ta_ohlc = ohlc(resample(ta, tf))
     #println("ta_ohlc=")
     #println(ta_ohlc)
-
+    @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
+    
     # resample using mean values
     ta_mean = mean(resample(ta, tf))
     #println("ta_mean=")
     #println(ta_mean)
+    @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
 
     # Define an other sample timeseries (volume for example)
     vol = rand(0:0.01:1.0, N)
     ta_vol = TimeArray(collect(idx), vol, ["vol"])
     #println("ta_vol=")
     #println(ta_vol)
+    @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
 
     # resample using sum values
     ta_vol_sum = sum(resample(ta_vol, tf))
     #println("ta_vol_sum=")
     #println(ta_vol_sum)
+    @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
 
 end
