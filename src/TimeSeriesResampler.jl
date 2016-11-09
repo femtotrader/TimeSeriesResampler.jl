@@ -1,5 +1,7 @@
 module TimeSeriesResampler
 
-# package code goes here
+export resample, ohlc, mean, sum
+
+include("resample.jl")
 
 end # module
