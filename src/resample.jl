@@ -11,9 +11,13 @@ function resample(ta::TimeArray, tf::TimeFrame)
     TimeArrayResampler(ta, tf)
 end
 
+function resample(ta::TimeArray, s_tf::String)
+    resample(ta, TimeFrame(s_tf))
+end
+
 function ohlc(resampler::TimeArrayResampler)
     ta = resampler.ta
-    f_group = resampler.tf.f_group
+    f_group = dt_grouper(resampler.tf)
     ta_o = collapse(ta, f_group, first, first)
     ta_h = collapse(ta, f_group, first, maximum)
     ta_l = collapse(ta, f_group, first, minimum)
