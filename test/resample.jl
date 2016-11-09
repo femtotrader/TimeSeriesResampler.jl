@@ -1,6 +1,5 @@
 using TimeSeries: TimeArray
-using TimeSeriesResampler: resample, ohlc, mean, sum
-using TimeFrames: TimeFrame
+using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum
 
 # Define a sample timeseries (prices for example)
 idx = DateTime(2010,1,1):Dates.Minute(1):DateTime(2011,1,1)
