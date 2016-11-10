@@ -11,8 +11,8 @@ function resample(ta::TimeArray, tf::TimeFrame)
     TimeArrayResampler(ta, tf)
 end
 
-function resample(ta::TimeArray, s_tf::String)
-    resample(ta, TimeFrame(s_tf))
+function resample(ta::TimeArray, tf)
+    resample(ta, TimeFrame(tf))
 end
 
 function ohlc(resampler::TimeArrayResampler)
