@@ -40,7 +40,7 @@ julia> ta = AAPL
 
 ### Resample monthly volume (using `sum`)
 ```julia
-julia> sum(resample(ta["Volume"], "1M"))
+julia> sum(resample(ta["Volume"], Dates.Month(1)))
 397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-12 to 2013-12-02
 
              Volume
@@ -58,7 +58,7 @@ julia> sum(resample(ta["Volume"], "1M"))
 ### Resample monthly adjusted close price (using `ohlc`)
 
 ```julia
-julia> ohlc(resample(ta["Adj. Close"], "1M"))
+julia> ohlc(resample(ta["Adj. Close"], Dates.Month(1)))
 397x4 TimeSeries.TimeArray{Float64,2,Date,Array{Float64,2}} 1980-12-12 to 2013-12-02
 
              Open      High      Low       Close
@@ -76,7 +76,7 @@ julia> ohlc(resample(ta["Adj. Close"], "1M"))
 ### Resample monthly adjusted close price (using `mean`)
 
 ```julia
-julia> mean(resample(ta["Adj. Close"], "1M"))
+julia> mean(resample(ta["Adj. Close"], Dates.Month(1)))
 397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-12 to 2013-12-02
 
              Adj. Close
@@ -90,3 +90,13 @@ julia> mean(resample(ta["Adj. Close"], "1M"))
 2013-11-01 | 521.058
 2013-12-02 | 556.3467
 ```
+
+### Under the hood...
+
+TimeSeriesResampler uses TimeFrame from [TimeFrames.jl](https://github.com/femtotrader/TimeFrames.jl/) for resampling.
+
+TimeFrames can be set using:
+ - `Dates.DatePeriod` such as `Dates.Month(1)`
+ - `Dates.TimePeriod` such as `Dates.Hour(1)`
+ - Named timeframe (such as `Yearly(1)`, `Weekly(1)`, ...) - `using TimeFrames` is required
+ - String shortcuts for timeframe (`"1Y"`, `"1W"`, ...)
