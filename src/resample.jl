@@ -2,7 +2,7 @@ using TimeSeries: TimeArray, collapse
 using TimeFrames: TimeFrame, dt_grouper
 import Base: mean, sum
 
-type TimeArrayResampler
+immutable TimeArrayResampler
     ta::TimeArray
     tf::TimeFrame
 end
