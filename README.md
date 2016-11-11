@@ -98,5 +98,7 @@ TimeSeriesResampler uses TimeFrame from [TimeFrames.jl](https://github.com/femto
 TimeFrames can be set using:
  - `Dates.DatePeriod` such as `Dates.Month(1)`
  - `Dates.TimePeriod` such as `Dates.Hour(1)`
- - Named timeframe (such as `Yearly(1)`, `Weekly(1)`, ...) - `using TimeFrames` is required
  - String shortcuts for timeframe (`"1Y"`, `"1W"`, ...)
+ - Lambda functions to define how Date and/or DateTime should be grouped (ie `dt -> floor(dt, Dates.Month(1))`)
+ - Named timeframe (such as `Yearly(1)`, `Weekly(1)`, ...) - `using TimeFrames` is required
+ 
