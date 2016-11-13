@@ -48,13 +48,13 @@ for ta in a_ta
         @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
 
         ## group-by by 1 column
-        ta_ohlc = ohlc(resample(ta, tf)["y1"])
+        ta_ohlc = ohlc(resample(ta2, tf)["y1"])
         #println("ta_ohlc=")
         #println(ta_ohlc)
         @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
 
         ## group-by by 2 columns
-        ta_ohlc = ohlc(resample(ta, tf)["y1", "y2"])
+        ta_ohlc = ohlc(resample(ta2, tf)["y1", "y2"])
         #println("ta_ohlc=")
         #println(ta_ohlc)
         @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)

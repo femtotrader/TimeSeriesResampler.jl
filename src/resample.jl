@@ -11,7 +11,7 @@ end
 
 immutable GroupBy
     action::AbstractAction
-    by
+    by::Vector{String}
 end
 
 function resample(ta::TimeArray, tf::TimeFrame)
@@ -22,7 +22,9 @@ function resample(ta::TimeArray, tf)
     resample(ta, TimeFrame(tf))
 end
 
-function getindex(action::AbstractAction, by...)
+function getindex(action::TimeArrayResampler, by...)
+    action = TimeArrayResampler(action.ta[by...], action.tf)
+    by = collect(by)
     GroupBy(action, by)
 end
 
@@ -54,7 +56,7 @@ function ohlc(resampler::TimeArrayResampler)
 end
 
 function mean(grp::GroupBy)
-    ohlc(grp.action)
+    mean(grp.action)
 end
 
 function mean(resampler::TimeArrayResampler)
