@@ -11,7 +11,7 @@ A Julia package to resample timeseries (from TimeSeries.jl)
 ## Install
 
 ```julia
-Pkg.clone("https://github.com/femtotrader/TimeSeriesResampler.jl")
+Pkg.add("TimeSeriesResampler")
 ```
 
 ## Usage
