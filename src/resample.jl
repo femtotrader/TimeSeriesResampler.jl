@@ -1,5 +1,5 @@
 using TimeSeries: TimeArray, collapse
-using TimeFrames: TimeFrame, dt_grouper
+using TimeFrames: TimeFrame, dt_grouper, Begin, End
 import Base: mean, sum, getindex
 
 abstract AbstractAction
