@@ -104,3 +104,41 @@ TimeFrames can be set using:
  - Lambda functions to define how `Date` and/or `DateTime` should be grouped (ie `dt -> floor(dt, Dates.Month(1))`)
  - Named timeframe (such as `Yearly(1)`, `Weekly(1)`, ...) - `using TimeFrames` is required
  
+An example with end of month (`Monthly(boundary=End)`) volume (`sum`) resampling
+
+```julia
+julia> using MarketData: AAPL
+
+julia> using TimeFrames
+
+julia> using TimeSeriesResampler
+
+julia> ta=AAPL
+8336x12 TimeSeries.TimeArray{Float64,2,Date,Array{Float64,2}} 1980-12-12 to 2013-12-31
+
+             Open      High      Low       Close     Volume          Ex-Dividend  Split Ratio  Adj. Open  Adj. High  Adj. Low  Adj. Close  Adj. Volume
+1980-12-12 | 28.75     28.88     28.75     28.75     2093900         0.0          1            3.3766     3.3919     3.3766    3.3766      16751200
+1980-12-15 | 27.38     27.38     27.25     27.25     785200          0.0          1            3.2157     3.2157     3.2004    3.2004      6281600
+1980-12-16 | 25.38     25.38     25.25     25.25     472000          0.0          1            2.9808     2.9808     2.9655    2.9655      3776000
+1980-12-17 | 25.88     26.0      25.88     25.88     385900          0.0          1            3.0395     3.0536     3.0395    3.0395      3087200
+⋮
+2013-12-26 | 568.1     569.5     563.38    563.9     7286000         0.0          1            564.7392   566.1309   560.0471  560.564     7286000
+2013-12-27 | 563.82    564.41    559.5     560.09    8067300         0.0          1            560.4845   561.071    556.1901  556.7766    8067300
+2013-12-30 | 557.46    560.09    552.32    554.52    9058200         0.0          1            554.1621   556.7766   549.0525  551.2395    9058200
+2013-12-31 | 554.17    561.28    554.0     561.02    7967300         0.0          1            550.8916   557.9595   550.7226  557.7011    7967300
+
+
+julia> sum(resample(ta["Volume"], Monthly(boundary=End)))
+397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-31 to 2013-12-31
+
+             Volume
+1980-12-31 | 6003800
+1981-01-31 | 2718700
+1981-02-28 | 1435800
+1981-03-31 | 3280300
+⋮
+2013-09-30 | 320886600
+2013-10-31 | 277097800
+2013-11-30 | 176795200
+2013-12-31 | 252049900
+``
