@@ -17,7 +17,7 @@ end
 
 function ohlc(resampler::TimeArrayResampler)
     ta = resampler.ta
-    f_group = dt_grouper(resampler.tf)
+    f_group = dt_grouper(resampler.tf, eltype(ta.timestamp))
     ta_o = collapse(ta, f_group, first, first)
     ta_h = collapse(ta, f_group, first, maximum)
     ta_l = collapse(ta, f_group, first, minimum)
@@ -28,11 +28,11 @@ function ohlc(resampler::TimeArrayResampler)
 end
 
 function mean(resampler::TimeArrayResampler)
-    f_group = dt_grouper(resampler.tf)
+    f_group = dt_grouper(resampler.tf, eltype(resampler.ta.timestamp))
     collapse(resampler.ta, f_group, dt -> f_group(first(dt)), mean)
 end
 
 function sum(resampler::TimeArrayResampler)
-    f_group = dt_grouper(resampler.tf)
+    f_group = dt_grouper(resampler.tf, eltype(resampler.ta.timestamp))
     collapse(resampler.ta, f_group, dt -> f_group(first(dt)), sum)
 end
