@@ -1,5 +1,7 @@
 # TimeSeriesResampler
 
+[![Package Evaluator](http://pkg.julialang.org/badges/TimeSeriesResampler_0.5.svg)](http://pkg.julialang.org/?pkg=TimeSeriesResampler)
+
 [![Build Status](https://travis-ci.org/femtotrader/TimeSeriesResampler.jl.svg?branch=master)](https://travis-ci.org/femtotrader/TimeSeriesResampler.jl)
 
 [![Coverage Status](https://coveralls.io/repos/github/femtotrader/TimeSeriesResampler.jl/badge.svg?branch=master)](https://coveralls.io/github/femtotrader/TimeSeriesResampler.jl?branch=master)
