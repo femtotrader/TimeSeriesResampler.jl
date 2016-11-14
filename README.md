@@ -141,4 +141,4 @@ julia> sum(resample(ta["Volume"], Monthly(boundary=End)))
 2013-10-31 | 277097800
 2013-11-30 | 176795200
 2013-12-31 | 252049900
-``
+```
