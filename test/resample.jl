@@ -2,7 +2,7 @@ using Base.Test
 
 using TimeSeries: TimeArray
 using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum
-using TimeFrames: Minutely
+using TimeFrames
 
 function variation(a; n=1)
     a[1+n:end] - a[1:end-n]
@@ -29,7 +29,7 @@ a_ta = [ta1, ta2]
 # Define how datetime should be grouped (timeframe)
 a_tf = [
     TimeFrame(dt -> floor(dt, Dates.Minute(15))),  # using a lambda function
-    TimeFrame(Minutely(15)),  # using a TimeFrame object (from TimeFrames.jl)
+    TimeFrame(Minute(15)),  # using a TimeFrame object (from TimeFrames.jl)
     TimeFrame("15T"),  # using a string TimeFrame shortcut to create a TimeFrame
     "15T",  # using a string TimeFrame shortcut 
 ]

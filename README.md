@@ -100,11 +100,11 @@ TimeSeriesResampler uses TimeFrame from [TimeFrames.jl](https://github.com/femto
 TimeFrames can be set using:
  - `Dates.DatePeriod` such as `Dates.Month(1)`
  - `Dates.TimePeriod` such as `Dates.Hour(1)`
- - String shortcuts for timeframe (`"1Y"`, `"1W"`, ...)
+ - String shortcuts for timeframe (`"A"`, `"AS"`, `"M"`, `"MS"`, `"W"`, `D`, `"5H"`, ...)
  - Lambda functions to define how `Date` and/or `DateTime` should be grouped (ie `dt -> floor(dt, Dates.Month(1))`)
- - Named timeframe (such as `Yearly(1)`, `Weekly(1)`, ...) - `using TimeFrames` is required
+ - Named timeframe (such as `YearEnd(1)`, `Week(1)`, ...) - `using TimeFrames` is required (don't use `using Base: Dates`)
  
-An example with end of month (`Monthly(boundary=End)`) volume (`sum`) resampling
+An example with end of month (`MonthEnd()`) volume (`sum`) resampling
 
 ```julia
 julia> using MarketData: AAPL
@@ -128,7 +128,7 @@ julia> ta=AAPL
 2013-12-31 | 554.17    561.28    554.0     561.02    7967300         0.0          1            550.8916   557.9595   550.7226  557.7011    7967300
 
 
-julia> sum(resample(ta["Volume"], Monthly(boundary=End)))
+julia> sum(resample(ta["Volume"], MonthEnd()))
 397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-31 to 2013-12-31
 
              Volume
