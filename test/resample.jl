@@ -1,7 +1,7 @@
 using Base.Test
 
 using TimeSeries: TimeArray
-using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum
+using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum, std
 using TimeFrames
 
 function variation(a; n=1)
