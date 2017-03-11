@@ -1,7 +1,7 @@
 using Base.Test
 
 using TimeSeries: TimeArray
-using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum
+using TimeSeriesResampler: resample, TimeFrame, ohlc, mean, sum, std
 using TimeFrames
 
 function variation(a; n=1)
@@ -31,7 +31,7 @@ a_tf = [
     TimeFrame(dt -> floor(dt, Dates.Minute(15))),  # using a lambda function
     TimeFrame(Minute(15)),  # using a TimeFrame object (from TimeFrames.jl)
     TimeFrame("15T"),  # using a string TimeFrame shortcut to create a TimeFrame
-    "15T",  # using a string TimeFrame shortcut 
+    "15T",  # using a string TimeFrame shortcut
 ]
 
 for ta in a_ta
@@ -40,7 +40,7 @@ for ta in a_ta
 
     for tf in a_tf
         println(tf)
-    
+
         # resample using OHLC values
         ta_ohlc = ohlc(resample(ta, tf))
         #println("ta_ohlc=")
@@ -58,7 +58,7 @@ for ta in a_ta
         #println("ta_ohlc=")
         #println(ta_ohlc)
         @test mean(variation(ta_ohlc.timestamp)) == Dates.Minute(15)
-    
+
         # resample using mean values
         ta_mean = mean(resample(ta, tf))
         #println("ta_mean=")
@@ -77,5 +77,11 @@ for ta in a_ta
         #println("ta_vol_sum=")
         #println(ta_vol_sum)
         @test mean(variation(ta_vol_sum.timestamp)) == Dates.Minute(15)
+
+        # resample using std values
+        ta_vol_std = std(resample(ta_vol, tf))
+        #println("ta_vol_std=")
+        #println(ta_vol_std)
+        @test mean(variation(ta_vol_std.timestamp)) == Dates.Minute(15)
     end
 end
