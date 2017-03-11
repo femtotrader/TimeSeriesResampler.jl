@@ -1,6 +1,6 @@
 using TimeSeries: TimeArray, collapse
 using TimeFrames: TimeFrame, dt_grouper, Begin, End
-import Base: mean, sum, getindex
+import Base: mean, sum, std, getindex
 
 abstract AbstractAction
 
@@ -71,4 +71,13 @@ end
 function sum(resampler::TimeArrayResampler)
     f_group = dt_grouper(resampler.tf, eltype(resampler.ta.timestamp))
     collapse(resampler.ta, f_group, dt -> f_group(first(dt)), sum)
+end
+
+function std(grp::GroupBy)
+    std(grp.action)
+end
+
+function std(resampler::TimeArrayResampler)
+    f_group = dt_grouper(resampler.tf, eltype(resampler.ta.timestamp))
+    collapse(resampler.ta, f_group, dt -> f_group(first(dt)), std)
 end
