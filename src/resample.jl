@@ -2,14 +2,14 @@ using TimeSeries: TimeArray, collapse
 using TimeFrames: TimeFrame, dt_grouper, Begin, End
 import Base: mean, sum, std, getindex
 
-abstract AbstractAction
+abstract type AbstractAction end
 
-immutable TimeArrayResampler <: AbstractAction
+struct TimeArrayResampler <: AbstractAction
     ta::TimeArray
     tf::TimeFrame
 end
 
-immutable GroupBy
+struct GroupBy
     action::AbstractAction
     by::Vector{String}
 end

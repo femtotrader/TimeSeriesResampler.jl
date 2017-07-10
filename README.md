@@ -1,6 +1,6 @@
 # TimeSeriesResampler
 
-[![Package Evaluator](http://pkg.julialang.org/badges/TimeSeriesResampler_0.5.svg)](http://pkg.julialang.org/?pkg=TimeSeriesResampler)
+[![Package Evaluator](http://pkg.julialang.org/badges/TimeSeriesResampler_0.6.svg)](http://pkg.julialang.org/?pkg=TimeSeriesResampler)
 
 [![Build Status](https://travis-ci.org/femtotrader/TimeSeriesResampler.jl.svg?branch=master)](https://travis-ci.org/femtotrader/TimeSeriesResampler.jl)
 
