@@ -8,7 +8,7 @@
 
 [![codecov.io](http://codecov.io/github/femtotrader/TimeSeriesResampler.jl/coverage.svg?branch=master)](http://codecov.io/github/femtotrader/TimeSeriesResampler.jl?branch=master)
 
-A Julia package to resample timeseries (from [TimeSeries.jl](http://timeseriesjl.readthedocs.io/))
+A Julia package to resample timeseries (from [TimeSeries.jl](http://juliastats.github.io/TimeSeries.jl/stable/))
 
 ## Install
 
