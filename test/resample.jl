@@ -30,7 +30,7 @@ end
 
     # Define how datetime should be grouped (timeframe)
     a_tf = [
-        TimeFrame(dt -> floor(dt, Dates.Minute(15))),  # using a lambda function
+        TimeFrame(dt -> floor(dt, digits=Dates.Minute(15))),  # using a lambda function
         TimeFrame(Minute(15)),  # using a TimeFrame object (from TimeFrames.jl)
         TimeFrame("15T"),  # using a string TimeFrame shortcut to create a TimeFrame
         "15T",  # using a string TimeFrame shortcut
