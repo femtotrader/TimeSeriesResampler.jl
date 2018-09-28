@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/femtotrader/TimeSeriesResampler.jl.svg?branch=master)](https://travis-ci.org/femtotrader/TimeSeriesResampler.jl)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/github/femtotrader/timeseriesresampler.jl?svg=true&branch=master)](https://ci.appveyor.com/project/femtotrader/timeseriesresampler-jl/branch/master)
+
 [![Coverage Status](https://coveralls.io/repos/github/femtotrader/TimeSeriesResampler.jl/badge.svg?branch=master)](https://coveralls.io/github/femtotrader/TimeSeriesResampler.jl?branch=master)
 
 [![codecov.io](http://codecov.io/github/femtotrader/TimeSeriesResampler.jl/coverage.svg?branch=master)](http://codecov.io/github/femtotrader/TimeSeriesResampler.jl?branch=master)
