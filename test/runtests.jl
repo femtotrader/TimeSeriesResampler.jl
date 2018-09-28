@@ -1,4 +1,4 @@
 using TimeSeriesResampler
-using Base.Test
+using Test
 
 include("resample.jl")

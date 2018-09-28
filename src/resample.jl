@@ -1,6 +1,7 @@
 using TimeSeries: TimeArray, collapse
 using TimeFrames: TimeFrame, dt_grouper, Begin, End
-import Base: mean, sum, std, getindex
+import Base: sum, getindex
+import Statistics: mean, std
 
 abstract type AbstractAction end
 
