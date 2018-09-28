@@ -23,6 +23,8 @@ Pkg.add("TimeSeriesResampler")
 ```julia
 julia> using MarketData: AAPL
 
+julia> using Dates
+
 julia> using TimeSeriesResampler
 
 julia> ta = AAPL
