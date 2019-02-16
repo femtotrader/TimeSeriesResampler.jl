@@ -45,8 +45,9 @@ julia> ta = AAPL
 ```
 
 ### Resample monthly volume (using `sum`)
+
 ```julia
-julia> sum(resample(ta["Volume"], Dates.Month(1)))
+julia> sum(resample(ta[:Volume], Dates.Month(1)))
 397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-01 to 2013-12-01
 
              Volume
@@ -64,7 +65,7 @@ julia> sum(resample(ta["Volume"], Dates.Month(1)))
 ### Resample monthly adjusted close price (using `ohlc`)
 
 ```julia
-julia> ohlc(resample(ta["Adj. Close"], Dates.Month(1)))
+julia> ohlc(resample(ta[Symbol("Adj. Close")], Dates.Month(1)))
 397x4 TimeSeries.TimeArray{Float64,2,Date,Array{Float64,2}} 1980-12-01 to 2013-12-01
 
              Open      High      Low       Close
@@ -82,7 +83,7 @@ julia> ohlc(resample(ta["Adj. Close"], Dates.Month(1)))
 ### Resample monthly adjusted close price (using `mean`)
 
 ```julia
-julia> mean(resample(ta["Adj. Close"], Dates.Month(1)))
+julia> mean(resample(ta[Symbol("Adj. Close")], Dates.Month(1)))
 397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-01 to 2013-12-01
 
              Adj. Close
@@ -102,11 +103,12 @@ julia> mean(resample(ta["Adj. Close"], Dates.Month(1)))
 TimeSeriesResampler uses TimeFrame from [TimeFrames.jl](https://github.com/femtotrader/TimeFrames.jl/) for resampling.
 
 TimeFrames can be set using:
- - `Dates.DatePeriod` such as `Dates.Month(1)`
- - `Dates.TimePeriod` such as `Dates.Hour(1)`
- - String shortcuts for timeframe (`"A"`, `"AS"`, `"M"`, `"MS"`, `"W"`, `D`, `"5H"`, ...)
- - Lambda functions to define how `Date` and/or `DateTime` should be grouped (ie `dt -> floor(dt, Dates.Month(1))`)
- - Named timeframe (such as `YearEnd(1)`, `Week(1)`, ...) - `using TimeFrames` is required (don't use `using Base: Dates`)
+
+- `Dates.DatePeriod` such as `Dates.Month(1)`
+- `Dates.TimePeriod` such as `Dates.Hour(1)`
+- String shortcuts for timeframe (`"A"`, `"AS"`, `"M"`, `"MS"`, `"W"`, `D`, `"5H"`, ...)
+- Lambda functions to define how `Date` and/or `DateTime` should be grouped (ie `dt -> floor(dt, Dates.Month(1))`)
+- Named timeframe (such as `YearEnd(1)`, `Week(1)`, ...) - `using TimeFrames` is required (don't use `using Base: Dates`)
  
 An example with end of month (`MonthEnd()`) volume (`sum`) resampling
 
@@ -132,7 +134,7 @@ julia> ta=AAPL
 2013-12-31 | 554.17    561.28    554.0     561.02    7967300         0.0          1            550.8916   557.9595   550.7226  557.7011    7967300
 
 
-julia> sum(resample(ta["Volume"], MonthEnd()))
+julia> sum(resample(ta[:Volume], MonthEnd()))
 397x1 TimeSeries.TimeArray{Float64,1,Date,Array{Float64,1}} 1980-12-31 to 2013-12-31
 
              Volume
